@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  web:
+    build: ./services/web
+    image: sfn-api:latest
+    container_name: sfnAPI
+    environment:
+      ENVIRONMENT: development
+      FLASK_APP: project/api.py
+    command: ["./scripts/command-dev.sh"]
+    volumes:
+    - ./services/web/project:/home/apiuser/app/project
+    - ./services/web/manage.py:/home/apiuser/app/manage.py
+    ports:
+    - 5000:5000
